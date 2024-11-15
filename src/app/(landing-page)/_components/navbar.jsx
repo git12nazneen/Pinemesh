@@ -3,8 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { useSession, signOut } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,9 +12,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import defaultImg from '@/../../public/images/user.png'
-import { navLinks } from '@/lib/datas';
+import defaultImg from '@/../../public/user.png'
 import { ArrowDownRight } from 'lucide-react';
+import ShinyButton from '@/components/ui/shiny-button';
+import { navLinks } from '@/lib/data';
+import { Button } from '@/components/ui/button';
 
 
 
@@ -33,7 +34,7 @@ export const Navbar = () => {
           {/* Logo on the left side */}
           <Link href="/">
             <Image
-              src="/images/logo1.png"
+              src="/logo1.png"
               width={60}
               height={10}
               alt="Logo"
@@ -82,7 +83,7 @@ export const Navbar = () => {
               ))}
               {!session ? (
                 <Link href='/sign-in'>
-                  <Button className='bg-[#be1d2f]' title='Login'>Login</Button>
+                  <ShinyButton className='bg-[#be1d2f]' title='Login'>Login</ShinyButton>
                 </Link>
               ) : (
                 <DropdownMenu>
@@ -134,8 +135,7 @@ export const Navbar = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
             )}
-            <Link href="/dashboard" className="px-4 py-2 font-bold text-gray-700 dark:text-gray-200">Dashboard</Link>
-
+        
           </div>
         </div>
       </div>
