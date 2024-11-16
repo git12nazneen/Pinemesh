@@ -49,7 +49,7 @@ export const Banner = () => {
               <Image
                 src="/Group4.png"
                 height={400}
-                width={500}
+                width={600}
                 alt="Abstract Background"
                 className="object-cover"
               />
