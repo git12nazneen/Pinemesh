@@ -4,6 +4,7 @@ import { Testimonial } from './_components/testimonial';
 import { PopularCourse } from './_components/popularCourse';
 import { Provide } from './_components/provide';
 
+
 const HomePage = () => {
   return (
     <div>
