@@ -28,17 +28,18 @@ export const Navbar = () => {
   const { data: session } = useSession();
 
   return (
-    <nav className="sticky top-0 backdrop-blur-2xl bg-[#e1cbc75e] shadow-lg dark:bg-gray-800 bg-opacity-80 z-50">
+    <nav className="sticky top-0 backdrop-blur-2xl bg-white shadow-lg dark:bg-gray-800 bg-opacity-80 z-50 py-2">
       <div className="container px-6 py-2 mx-auto ">
         <div className="flex items-center justify-between">
           {/* Logo on the left side */}
           <Link href="/">
             <Image
               src="/logo1.png"
-              width={60}
-              height={10}
+              width={20}
+              height={7}
               alt="Logo"
-            />
+              className='bg-[#287279] rounded-full p-3'
+/>
           </Link>
 
           {/* Mobile menu button */}
@@ -83,7 +84,7 @@ export const Navbar = () => {
               ))}
               {!session ? (
                 <Link href='/sign-in'>
-                  <ShinyButton className='bg-[#be1d2f]' title='Login'>Login</ShinyButton>
+                  <ShinyButton className='bg-[#287279]' title='Login'>Login</ShinyButton>
                 </Link>
               ) : (
                 <DropdownMenu>
@@ -117,7 +118,7 @@ export const Navbar = () => {
 
             {!session ? (
               <Link href='/sign-in'>
-                <Button className='bg-[#be1d2f]' title='Login'>Login</Button>
+                <Button className='bg-[#287279]' title='Login'>Login</Button>
               </Link>
             ) : (
               <DropdownMenu>
