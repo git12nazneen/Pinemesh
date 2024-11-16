@@ -54,7 +54,7 @@ export const navLinks = [
       id: 1,
       name: "Kilian Murphe",
       quote:
-        "The mindfulness courses have been transformative in helping me manage stress and achieve balance in my daily routine. From work pressures to personal challenges, I’ve learned techniques that genuinely make a difference. ",
+        "The mindfulness courses have been transformative in helping me manage stress and achieve balance in my daily routine.  ",
       imageUrl: "/men.jpeg",
     },
     {
@@ -75,14 +75,14 @@ export const navLinks = [
       id: 4,
       name: "Kilian Murphe",
       quote:
-        "What I love most about EduPath is the flexibility it offers. The courses are well-structured yet allow me to learn at my own pace, which is crucial with my busy lifestyle. The content is not only insightful but also actionable, enabling me to integrate mindfulness practices seamlessly into my everyday .",
+        "What I love most about EduPath is the flexibility it offers. The courses are well-structured yet allow me to learn at my own pace, which is crucial with my busy lifestyle. The content is not only insightful but also actionable,",
       imageUrl: "/men.jpeg",
     },
     {
       id: 5,
       name: "Kilian Murphe",
       quote:
-        "This platform has exceeded my expectations! The guided meditation sessions are calming and rejuvenating, while the wellness courses are incredibly well-designed and informative. The instructors’ warmth and clarity make it feel like a personal journey rather than a rigid curriculum. ",
+        "This platform has exceeded my expectations! The guided meditation sessions are calming and rejuvenating, while the wellness courses are incredibly well-designed and informative. \ ",
       imageUrl: "/men.jpeg",
     },
     {

@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const TestimonialCard = ({ name, quote, imageUrl }) => {
   return (
-    <div className="max-w-sm p-6 bg-purple-50 border border-purple-200 rounded-lg shadow-md">
+    <div className="w-96 p-6 bg-purple-50 border border-purple-200 rounded-lg shadow-md">
       <div className="flex items-center mb-4">
         {/* Profile Image */}
         <div className="rounded-full">
@@ -11,7 +11,7 @@ const TestimonialCard = ({ name, quote, imageUrl }) => {
             alt={`${name}'s profile picture`}
             className="rounded-full"
             width={80}
-            height={100}
+            height={80}
           />
         </div>
         {/* Name */}
