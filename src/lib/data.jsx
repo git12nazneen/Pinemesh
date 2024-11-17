@@ -1,4 +1,4 @@
-import {  FaFacebookF, FaDiscord, FaTwitterSquare, FaInstagramSquare } from "react-icons/fa";
+import { FaInstagramSquare, FaTwitterSquare, FaFacebookF, FaDiscord } from "react-icons/fa";
 
 export const navLinks = [
     { href: "/", label: "Home" },

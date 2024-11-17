@@ -13,7 +13,7 @@ export default function CourseCard({
   price 
 }) {
   return (
-    <div className="max-w-sm mx-auto rounded-lg border border-gray-200 shadow-lg overflow-hidden bg-white group-hover:bg-green-100">
+    <div className="max-w-sm mx-auto rounded-lg border border-gray-200 shadow-lg overflow-hidden bg-white hover:bg-green-100">
       {/* Card Image */}
       <div className="relative w-full h-48">
         <Image
@@ -54,9 +54,10 @@ export default function CourseCard({
         </div>
 
         {/* Instructor */}
-        <div className="flex justify-between items-center space-x-3 mb-4">
-          <div className="w-8 h-8 rounded-full overflow-hidden">
-            <div className="flex">
+        <div className="flex justify-between items-center text-center space-x-3 mb-4">
+          
+            <div className="flex justify-center gap-2 items-center">
+            <div className="w-8 h-8 rounded-full overflow-hidden">
             <Image
               src={instructorImage}
               alt={instructor}
