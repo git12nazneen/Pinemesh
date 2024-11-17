@@ -1,56 +1,31 @@
 "use client";
 
-import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
 import LetterPullup from "@/components/ui/letter-pullup";
 import Image from "next/image";
 
-
 export function UserAuthForm({ className, ...props }) {
-  const [isLoading, setIsLoading] = useState(false); // Fixed useState syntax
-
-  async function onSubmit(event) {
-    event.preventDefault();
-    setIsLoading(true);
-
-    // Email-based sign-in (if enabled in NextAuth)
-    const email = event.target.email.value;
-    const result = await signIn("email", { email, redirect: false });
-
-    if (!result?.ok) {
-      console.error("Error signing in:", result?.error);
-    }
-
-    setIsLoading(false);
-  }
-
   return (
     <div>
       <div className="py-7 text-center">
         <div className="flex justify-center items-center">
-        <Link href="/">
+          <Link href="/">
             <div className="bg-[#287279] rounded-full p-3 inline-block">
-              <Image
-                src="/logo1.png"
-                width={20}
-                height={7}
-                alt="Logo"
-              />
+              <Image src="/logo1.png" width={20} height={7} alt="Logo" />
             </div>
           </Link>
         </div>
-        <LetterPullup words="Welcome EduPath"></LetterPullup>
+        <LetterPullup words="Welcome EduPath" />
         <p className="text-base text-muted-foreground">
           Sign in to start saving someone&apos;s life
         </p>
       </div>
       <div className={cn("grid gap-2", className)} {...props}>
-        <form onSubmit={onSubmit}>
+        <form>
           <div className="grid gap-2">
             <div className="grid gap-1">
               <Label className="sr-only" htmlFor="email">
@@ -63,7 +38,6 @@ export function UserAuthForm({ className, ...props }) {
                 autoCapitalize="none"
                 autoComplete="email"
                 autoCorrect="off"
-                disabled={isLoading}
               />
             </div>
             <div className="grid gap-1">
@@ -77,13 +51,9 @@ export function UserAuthForm({ className, ...props }) {
                 autoCapitalize="none"
                 autoComplete="current-password"
                 autoCorrect="off"
-                disabled={isLoading}
               />
             </div>
-            <Button className="bg-[#43848a]" disabled={isLoading}>
-             
-              Sign In with Email
-            </Button>
+            <Button className="bg-[#43848a]">Sign In with Email</Button>
           </div>
         </form>
         <div className="relative">
@@ -97,31 +67,10 @@ export function UserAuthForm({ className, ...props }) {
           </div>
         </div>
         <div className="flex gap-4 justify-between">
-          <Button
-            className="w-full"
-            variant="outline"
-            type="button"
-            disabled={isLoading}
-            onClick={() => signIn("github", { callbackUrl: "/" })}
-          >
-            
+          <Button className="w-full" variant="outline">
             GitHub
           </Button>
-          <Button
-            className="w-full"
-            variant="outline"
-            type="button"
-            disabled={isLoading}
-            onClick={async () => {
-              const result = await signIn("google", {
-                callbackUrl: "/",
-                redirect: false,
-              });
-              console.log("Google sign-in response:", result);
-              setIsLoading(false);
-            }}
-          >
-            
+          <Button className="w-full" variant="outline">
             Google
           </Button>
         </div>

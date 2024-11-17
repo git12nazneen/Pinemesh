@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import defaultImg from '@/../../public/user.png'
-import { ArrowDownRight } from 'lucide-react';
+import { ArrowDownRight, BriefcaseBusiness } from 'lucide-react';
 import ShinyButton from '@/components/ui/shiny-button';
 import { navLinks } from '@/lib/data';
 import { Button } from '@/components/ui/button';
@@ -118,6 +118,9 @@ export const Navbar = () => {
               </Link>
             ))}
 
+            <h1>
+            <BriefcaseBusiness />
+            </h1>
             {!session ? (
               <Link href='/sign-in'>
                 <Button className='bg-[#287279]' title='Login'>Login</Button>

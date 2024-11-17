@@ -1,63 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
 import Image from "next/image";
 import LetterPullup from "@/components/ui/letter-pullup";
 import { Button } from "@/components/ui/button";
 
 export function SignUpUserForm({ className, ...props }) {
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
-
-  async function onSubmit(event) {
-    event.preventDefault();
-    setIsLoading(true);
-
-    try {
-      const formData = {
-        name: event.target.name.value,
-        email: event.target.email.value,
-        password: event.target.password.value,
-        photo: event.target.photo.value,
-      };
-      console.log("Form data:", formData);
-
-      const response = await fetch(`/api/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.status === 201) {
-        router.push("/");
-      }
-    } catch (error) {
-      console.error("Sign-up error:", error);
-      toast("An error occurred while signing up. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
   return (
     <div>
       <div className="py-7 text-center">
         <div className="flex justify-center items-center">
-        <Link href="/">
+          <Link href="/">
             <div className="bg-[#287279] rounded-full p-3 inline-block">
-              <Image
-                src="/logo1.png"
-                width={20}
-                height={7}
-                alt="Logo"
-              />
+              <Image src="/logo1.png" width={20} height={7} alt="Logo" />
             </div>
           </Link>
         </div>
@@ -67,7 +25,7 @@ export function SignUpUserForm({ className, ...props }) {
         </p>
       </div>
       <div className={cn("grid gap-2", className)} {...props}>
-        <form onSubmit={onSubmit}>
+        <form>
           <div className="grid gap-2">
             <div className="grid gap-1">
               <Label className="sr-only" htmlFor="name">
@@ -81,7 +39,6 @@ export function SignUpUserForm({ className, ...props }) {
                 autoCapitalize="none"
                 autoComplete="name"
                 autoCorrect="off"
-                disabled={isLoading}
               />
             </div>
 
@@ -97,7 +54,6 @@ export function SignUpUserForm({ className, ...props }) {
                 autoCapitalize="none"
                 autoComplete="email"
                 autoCorrect="off"
-                disabled={isLoading}
               />
             </div>
 
@@ -113,7 +69,6 @@ export function SignUpUserForm({ className, ...props }) {
                 autoCapitalize="none"
                 autoComplete="current-password"
                 autoCorrect="off"
-                disabled={isLoading}
               />
             </div>
 
@@ -129,13 +84,11 @@ export function SignUpUserForm({ className, ...props }) {
                 autoCapitalize="none"
                 autoComplete="url"
                 autoCorrect="off"
-                disabled={isLoading}
               />
             </div>
 
-            <Button className="bg-[#43848a]" type="submit" disabled={isLoading}>
-             
-              Sign In with Email
+            <Button className="bg-[#43848a]" type="button">
+              Sign Up with Email
             </Button>
           </div>
         </form>
@@ -152,31 +105,10 @@ export function SignUpUserForm({ className, ...props }) {
         </div>
 
         <div className="flex gap-4 justify-between">
-          <Button
-            className="w-full"
-            variant="outline"
-            type="button"
-            disabled={isLoading}
-            onClick={() => signIn("github", { callbackUrl: "/" })}
-          >
-           
+          <Button className="w-full" variant="outline">
             GitHub
           </Button>
-          <Button
-            className="w-full"
-            variant="outline"
-            type="button"
-            disabled={isLoading}
-            onClick={async () => {
-              const result = await signIn("google", {
-                callbackUrl: "/",
-                redirect: false,
-              });
-              console.log("Google sign-in response:", result);
-              setIsLoading(false);
-            }}
-          >
-           
+          <Button className="w-full" variant="outline">
             Google
           </Button>
         </div>

@@ -1,4 +1,5 @@
 import Container from '@/app/components/ui/container'
+import TypingAnimation from '@/components/ui/typing-animation'
 import Image from 'next/image'
 import React from 'react'
 
@@ -17,12 +18,7 @@ export const Banner = () => {
               </span>
               <span className="text-gray-600 text-sm">(566)</span>
             </div>
-
-            {/* <!-- Main Heading --> */}
-            <h1 className="text-5xl font-bold text-gray-800">
-              #1 Platform Powering Health and Wellness
-            </h1>
-
+            <TypingAnimation  text=" #1 Platform Powering Health and Wellness"></TypingAnimation>
             {/* <!-- Description --> */}
             <p className="text-gray-700 text-3xl">
               We’re restoring home as the primary place of personal well-being.
