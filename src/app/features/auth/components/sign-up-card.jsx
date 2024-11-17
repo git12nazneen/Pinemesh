@@ -1,12 +1,10 @@
 "use client";
 
-import * as React from "react";
-
-import { Icons } from '@/components/icons';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { cn } from '@/lib/utils';
-import Link from 'next/link';
+import React, { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
@@ -14,71 +12,70 @@ import Image from "next/image";
 import LetterPullup from "@/components/ui/letter-pullup";
 import { Button } from "@/components/ui/button";
 
-
-
 export function SignUpUserForm({ className, ...props }) {
-  const router = useRouter()
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   async function onSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
 
-    // formdata
     try {
       const formData = {
-        name: (event.target).name.value,
-        email: (event.target).email.value,
-        password: (event.target).password.value,
-        photo: (event.target).photo.value,
-      }
-      console.log('from data', formData)
-      // data post
+        name: event.target.name.value,
+        email: event.target.email.value,
+        password: event.target.password.value,
+        photo: event.target.photo.value,
+      };
+      console.log("Form data:", formData);
+
       const response = await fetch(`/api/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
-      })
+      });
 
-      response.status === 201 && router.push('/')
-
-    }
-    catch {
-      setIsLoading(false);
+      if (response.status === 201) {
+        router.push("/");
+      }
+    } catch (error) {
+      console.error("Sign-up error:", error);
       toast("An error occurred while signing up. Please try again.");
-    }
-    setTimeout(() => {
+    } finally {
       setIsLoading(false);
-    }, 3000);
+    }
   }
 
   return (
     <div>
       <div className="py-7 text-center">
-        <div className="flex justify-center items-center"><Link href="/">
-          <Image
-            src="/logo1.png"
-            width={60}
-            height={10}
-            alt="Logo"
-          />
-        </Link></div>
-      <LetterPullup words="Welcome BloodLagbe"></LetterPullup>
+        <div className="flex justify-center items-center">
+        <Link href="/">
+            <div className="bg-[#287279] rounded-full p-3 inline-block">
+              <Image
+                src="/logo1.png"
+                width={20}
+                height={7}
+                alt="Logo"
+              />
+            </div>
+          </Link>
+        </div>
+        <LetterPullup words="Welcome EduPath" />
         <p className="text-base text-muted-foreground">
-          Sign in to start save someone&apos;s life
+          Sign in to start saving someone&apos;s life
         </p>
       </div>
       <div className={cn("grid gap-2", className)} {...props}>
         <form onSubmit={onSubmit}>
           <div className="grid gap-2">
-
             <div className="grid gap-1">
-              <Label className="sr-only" htmlFor="email">
+              <Label className="sr-only" htmlFor="name">
                 Name
               </Label>
               <Input
                 id="name"
-                placeholder="John abra"
+                placeholder="John Abra"
                 type="text"
                 name="name"
                 autoCapitalize="none"
@@ -87,7 +84,6 @@ export function SignUpUserForm({ className, ...props }) {
                 disabled={isLoading}
               />
             </div>
-
 
             <div className="grid gap-1">
               <Label className="sr-only" htmlFor="email">
@@ -105,52 +101,45 @@ export function SignUpUserForm({ className, ...props }) {
               />
             </div>
 
-
-
-            <div className="grid gap-2">
-
-              <div className="grid gap-1">
-                <Label className="sr-only" htmlFor="email">
-                  Password
-                </Label>
-                <Input
-                  id="password"
-                  placeholder="Enter your password"
-                  type="password"
-                  name="password"
-                  autoCapitalize="none"
-                  autoComplete="current-password"
-                  autoCorrect="off"
-                  disabled={isLoading}
-                />
-              </div>
-
-
-              <div className="grid gap-1">
-                <Label className="sr-only" htmlFor="email">
-                  Photo url
-                </Label>
-                <Input
-                  id="photo"
-                  placeholder="Enter your photo URL"
-                  type="url"
-                  name="photo"
-                  autoCapitalize="none"
-                  autoComplete="url"
-                  autoCorrect="off"
-                  disabled={isLoading}
-                />
-              </div>
-
+            <div className="grid gap-1">
+              <Label className="sr-only" htmlFor="password">
+                Password
+              </Label>
+              <Input
+                id="password"
+                placeholder="Enter your password"
+                type="password"
+                name="password"
+                autoCapitalize="none"
+                autoComplete="current-password"
+                autoCorrect="off"
+                disabled={isLoading}
+              />
             </div>
-            <Button className="bg-red-800" type="submit" disabled={isLoading}>
-              {isLoading && (
-                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-              )}
+
+            <div className="grid gap-1">
+              <Label className="sr-only" htmlFor="photo">
+                Photo URL
+              </Label>
+              <Input
+                id="photo"
+                placeholder="Enter your photo URL"
+                type="url"
+                name="photo"
+                autoCapitalize="none"
+                autoComplete="url"
+                autoCorrect="off"
+                disabled={isLoading}
+              />
+            </div>
+
+            <Button className="bg-[#43848a]" type="submit" disabled={isLoading}>
+             
               Sign In with Email
             </Button>
           </div>
         </form>
+
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
             <span className="w-full border-t" />
@@ -161,40 +150,49 @@ export function SignUpUserForm({ className, ...props }) {
             </span>
           </div>
         </div>
+
         <div className="flex gap-4 justify-between">
-          <Button className="w-full" variant="outline" type="button" disabled={isLoading} onClick={() => signIn("github", { callbackUrl: "/" })}>
-            {isLoading ? (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <Icons.gitHub className="mr-2 h-4 w-4" />
-            )}{" "}
+          <Button
+            className="w-full"
+            variant="outline"
+            type="button"
+            disabled={isLoading}
+            onClick={() => signIn("github", { callbackUrl: "/" })}
+          >
+           
             GitHub
           </Button>
-          <Button className="w-full" variant="outline" type="button" disabled={isLoading}
+          <Button
+            className="w-full"
+            variant="outline"
+            type="button"
+            disabled={isLoading}
             onClick={async () => {
-              const result = await signIn("google", { callbackUrl: "/", redirect: false });
-              console.log("Google sign-in response:", result); // Log the response to check status
+              const result = await signIn("google", {
+                callbackUrl: "/",
+                redirect: false,
+              });
+              console.log("Google sign-in response:", result);
               setIsLoading(false);
             }}
           >
-            {isLoading ? (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <Icons.google className="mr-2 h-4 w-4" />
-            )}{" "}
+           
             Google
           </Button>
         </div>
 
-
-        <div className=" flex justify-center text-xs  ">
-          <p className="text-center text-xs  text-muted-foreground uppercase">Already Have An Account</p>
-          <Link href='/sign-in' className="bg-background px-2 underline text-muted-foreground uppercase">
+        <div className="flex justify-center text-xs">
+          <p className="text-center text-xs text-muted-foreground uppercase">
+            Already Have An Account
+          </p>
+          <Link
+            href="/sign-in"
+            className="bg-background px-2 underline text-muted-foreground uppercase"
+          >
             Sign In
           </Link>
         </div>
-
       </div>
     </div>
-  )
+  );
 }

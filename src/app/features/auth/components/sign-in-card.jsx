@@ -1,11 +1,10 @@
 "use client";
 
-import * as React from "react";
+import React, { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Icons } from "@/components/icons";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import LetterPullup from "@/components/ui/letter-pullup";
@@ -13,14 +12,14 @@ import Image from "next/image";
 
 
 export function UserAuthForm({ className, ...props }) {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(false); // Fixed useState syntax
 
   async function onSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
 
-    // Email-based sign-in (if you have email authentication enabled in NextAuth)
-    const email = (event.target).email.value;
+    // Email-based sign-in (if enabled in NextAuth)
+    const email = event.target.email.value;
     const result = await signIn("email", { email, redirect: false });
 
     if (!result?.ok) {
@@ -33,15 +32,19 @@ export function UserAuthForm({ className, ...props }) {
   return (
     <div>
       <div className="py-7 text-center">
-        <div className="flex justify-center items-center"><Link href="/">
-          <Image
-            src="/logo1.png"
-            width={60}
-            height={10}
-            alt="Logo"
-          />
-        </Link></div>
-        <LetterPullup words="Welcome BloodLagbe"></LetterPullup>
+        <div className="flex justify-center items-center">
+        <Link href="/">
+            <div className="bg-[#287279] rounded-full p-3 inline-block">
+              <Image
+                src="/logo1.png"
+                width={20}
+                height={7}
+                alt="Logo"
+              />
+            </div>
+          </Link>
+        </div>
+        <LetterPullup words="Welcome EduPath"></LetterPullup>
         <p className="text-base text-muted-foreground">
           Sign in to start saving someone&apos;s life
         </p>
@@ -77,10 +80,8 @@ export function UserAuthForm({ className, ...props }) {
                 disabled={isLoading}
               />
             </div>
-            <Button className="bg-red-800" disabled={isLoading}>
-              {isLoading && (
-                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-              )}
+            <Button className="bg-[#43848a]" disabled={isLoading}>
+             
               Sign In with Email
             </Button>
           </div>
@@ -96,26 +97,31 @@ export function UserAuthForm({ className, ...props }) {
           </div>
         </div>
         <div className="flex gap-4 justify-between">
-          <Button className="w-full" variant="outline" type="button" disabled={isLoading} onClick={() => signIn("github", { callbackUrl: "/" })}>
-            {isLoading ? (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <Icons.gitHub className="mr-2 h-4 w-4" />
-            )}{" "}
+          <Button
+            className="w-full"
+            variant="outline"
+            type="button"
+            disabled={isLoading}
+            onClick={() => signIn("github", { callbackUrl: "/" })}
+          >
+            
             GitHub
           </Button>
-          <Button className="w-full" variant="outline" type="button" disabled={isLoading}
+          <Button
+            className="w-full"
+            variant="outline"
+            type="button"
+            disabled={isLoading}
             onClick={async () => {
-              const result = await signIn("google", { callbackUrl: "/", redirect: false });
-              console.log("Google sign-in response:", result); // Log the response to check status
+              const result = await signIn("google", {
+                callbackUrl: "/",
+                redirect: false,
+              });
+              console.log("Google sign-in response:", result);
               setIsLoading(false);
             }}
           >
-            {isLoading ? (
-              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <Icons.google className="mr-2 h-4 w-4" />
-            )}{" "}
+            
             Google
           </Button>
         </div>

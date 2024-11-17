@@ -33,14 +33,16 @@ export const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo on the left side */}
           <Link href="/">
-            <Image
-              src="/logo1.png"
-              width={20}
-              height={7}
-              alt="Logo"
-              className='bg-[#287279] rounded-full p-3'
-/>
+            <div className="bg-[#287279] rounded-full p-3 inline-block">
+              <Image
+                src="/logo1.png"
+                width={20}
+                height={7}
+                alt="Logo"
+              />
+            </div>
           </Link>
+
 
           {/* Mobile menu button */}
           <button
@@ -136,7 +138,7 @@ export const Navbar = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
             )}
-        
+
           </div>
         </div>
       </div>
