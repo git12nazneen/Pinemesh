@@ -7,7 +7,7 @@ export const Banner = () => {
   return (
     <section className='bg-gray-100 px-8'>
       <Container>
-        <div className="flex flex-col md:flex-row items-center justify-between  rounded-lg">
+        <div className="flex flex-col md:flex-row items-center justify-between rounded-lg">
 
           {/* <!-- Left Section: Content --> */}
           <div className="max-w-lg space-y-4">
@@ -18,12 +18,12 @@ export const Banner = () => {
               </span>
               <span className="text-gray-600 text-sm">(566)</span>
             </div>
-            <TypingAnimation  text=" #1 Platform Powering Health and Wellness"></TypingAnimation>
+            <TypingAnimation text=" #1 Platform Powering Health and Wellness" />
             {/* <!-- Description --> */}
-            <p className="text-gray-700 text-3xl">
+            <p className="text-gray-700 text-2xl sm:text-3xl md:text-4xl">
               We’re restoring home as the primary place of personal well-being.
             </p>
-            <p className="text-gray-600">
+            <p className="text-gray-600 text-sm sm:text-base md:text-lg">
               Health is not just about what you’re eating. It’s also about what you’re thinking and saying.
             </p>
 
@@ -53,8 +53,8 @@ export const Banner = () => {
 
             {/* <!-- Stats Card --> */}
             <div className="absolute bottom-4 left-4 bg-white p-4 rounded-lg shadow-lg backdrop-blur-md bg-opacity-80">
-              <p className="text-2xl font-bold text-gray-800">12,000+</p>
-              <p className="text-gray-600 text-sm">Happy learners rely on us regularly</p>
+              <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800">12,000+</p>
+              <p className="text-gray-600 text-sm sm:text-base md:text-lg">Happy learners rely on us regularly</p>
               <p className="mt-2 text-blue-600 font-semibold">Find your wellbeing</p>
             </div>
           </div>
@@ -62,8 +62,5 @@ export const Banner = () => {
         </div>
       </Container>
     </section>
-
   )
 }
-
-

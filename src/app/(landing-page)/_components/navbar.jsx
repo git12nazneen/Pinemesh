@@ -18,18 +18,15 @@ import ShinyButton from '@/components/ui/shiny-button';
 import { navLinks } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 
-
-
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // {JSON.stringfy(session)}
-
-  const closeDrawer = () => setIsOpen(false);   //for drawer
   const { data: session } = useSession();
+
+  const closeDrawer = () => setIsOpen(false); // for drawer
 
   return (
     <nav className="sticky top-0 backdrop-blur-2xl bg-white shadow-lg dark:bg-gray-800 bg-opacity-80 z-50 py-2">
-      <div className="container px-6 py-2 mx-auto ">
+      <div className="container px-6 py-2 mx-auto">
         <div className="flex items-center justify-between">
           {/* Logo on the left side */}
           <Link href="/">
@@ -42,7 +39,6 @@ export const Navbar = () => {
               />
             </div>
           </Link>
-
 
           {/* Mobile menu button */}
           <button
@@ -58,7 +54,7 @@ export const Navbar = () => {
           {/* Backdrop for drawer */}
           {isOpen && (
             <div
-              className="fixed inset-0 bg-black bg-opacity-50 z-10 lg:hidden"
+              className="fixed inset-0 bg-gray-300 bg-opacity-80 z-10 lg:hidden"
               onClick={closeDrawer}
             ></div>
           )}
@@ -74,7 +70,7 @@ export const Navbar = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-            <div className="flex flex-col items-start mt-16 space-y-4 px-6">
+            <div className="flex flex-col items-start mt-16 space-y-4 px-6 bg-gray-200">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -97,12 +93,13 @@ export const Navbar = () => {
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem>{session.user?.name}</DropdownMenuItem>
-                    <DropdownMenuItem> <button onClick={() => signOut()} className="flex items-center gap-2">Sign out <ArrowDownRight /></button></DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <button onClick={() => signOut()} className="flex items-center gap-2">Sign out <ArrowDownRight /></button>
+                    </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               )}
               <Link href="/dashboard" className="text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 w-full px-3 py-2 rounded-md">Dashboard</Link>
-
             </div>
           </div>
 
@@ -112,19 +109,20 @@ export const Navbar = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                className='text-gray-900 '
+                className='text-gray-900'
               >
                 {link.label}
               </Link>
             ))}
 
             <h1>
-            <BriefcaseBusiness />
+              <BriefcaseBusiness />
             </h1>
             {!session ? (
               <Link href='/sign-in'>
                 <Button className='bg-[#287279]' title='Login'>Login</Button>
               </Link>
+               
             ) : (
               <DropdownMenu>
                 <DropdownMenuTrigger className='border-none'>
@@ -134,17 +132,18 @@ export const Navbar = () => {
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>{session.user?.name}</DropdownMenuItem>
-                  <DropdownMenuItem> <button onClick={() => signOut()} className="flex items-center gap-2">Sign out <ArrowDownRight /></button></DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Link href="/dashboard" className=" py-2 font-bold text-gray-700 dark:text-gray-200">Dashboard</Link>
+                    <button onClick={() => signOut()} className="flex items-center gap-2">Sign out <ArrowDownRight /></button>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link href="/dashboard" className="py-2 font-bold text-gray-700 dark:text-gray-200">Dashboard</Link>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             )}
-
           </div>
         </div>
       </div>
     </nav>
   );
-}; 
+};

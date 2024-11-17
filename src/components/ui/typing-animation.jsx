@@ -29,7 +29,7 @@ export default function TypingAnimation({
   return (
     (<h1
       className={cn(
-        "font-display text-start text-6xl font-bold leading-[5rem] tracking-[-0.02em] drop-shadow-sm",
+        "font-display text-start text-2xl lg:text-6xl font-bold leading-[5rem] tracking-[-0.02em] drop-shadow-sm",
         className
       )}>
       {displayedText ? displayedText : text}
