@@ -24,15 +24,15 @@ const PopularCourse = () => {
             </p>
           </div>
           {/* Navigation buttons */}
-          <div className='flex justify-between md:w-1/3'>
+          <div className='flex justify-between lg:justify-end md:w-1/3'>
             <button
-              className="px-3 py-3 rounded-full text-black border border-gray-800"
+              className="px-3 py-3 h-10 rounded-full text-black border border-gray-800"
               onClick={() => swiperRef.current.swiper.slidePrev()}
             >
               <FaAngleLeft />
             </button>
             <button
-              className="px-3 py-3 rounded-full text-black border-gray-800 border ml-2"
+              className="px-3 py-3 h-10 rounded-full text-black border-gray-800 border ml-2"
               onClick={() => swiperRef.current.swiper.slideNext()}
             >
               <FaAngleRight />
